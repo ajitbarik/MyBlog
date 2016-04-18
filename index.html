@@ -160,13 +160,13 @@ model</code></pre>
 ## 
 ## No pre-processing
 ## Resampling: Cross-Validated (5 fold) 
-## Summary of sample sizes: 9421, 9420, 9422, 9421, 9420 
+## Summary of sample sizes: 9421, 9422, 9420, 9421, 9420 
 ## Resampling results across tuning parameters:
 ## 
 ##   mtry  Accuracy   Kappa      Accuracy SD  Kappa SD   
-##    2    0.9712979  0.9636744  0.002481149  0.003142554
-##   12    0.9680711  0.9595955  0.002494472  0.003156558
-##   23    0.9593235  0.9485241  0.002864970  0.003626324
+##    2    0.9697688  0.9617337  0.004273688  0.005418207
+##   12    0.9667117  0.9578669  0.004081589  0.005167409
+##   23    0.9585598  0.9475489  0.001104995  0.001395237
 ## 
 ## Accuracy was used to select the optimal model using  the largest value.
 ## The final value used for the model was mtry = 2.</code></pre>
@@ -179,37 +179,37 @@ confusionMatrix(testing$classe, predict)</code></pre>
 ## 
 ##           Reference
 ## Prediction    A    B    C    D    E
-##          A 2227    1    2    1    1
-##          B   28 1475   12    3    0
-##          C    2   26 1334    5    1
-##          D    1    0   63 1213    9
-##          E    4   10    2   26 1400
+##          A 2224    4    3    1    0
+##          B   37 1465   13    3    0
+##          C    3   27 1323    9    6
+##          D    4    0   39 1236    7
+##          E    2   19    4   21 1396
 ## 
 ## Overall Statistics
 ##                                           
-##                Accuracy : 0.9749          
-##                  95% CI : (0.9712, 0.9782)
-##     No Information Rate : 0.2883          
+##                Accuracy : 0.9743          
+##                  95% CI : (0.9705, 0.9776)
+##     No Information Rate : 0.2893          
 ##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16       
 ##                                           
-##                   Kappa : 0.9682          
-##  Mcnemar's Test P-Value : &lt; 2.2e-16       
+##                   Kappa : 0.9674          
+##  Mcnemar's Test P-Value : 1.073e-13       
 ## 
 ## Statistics by Class:
 ## 
 ##                      Class: A Class: B Class: C Class: D Class: E
-## Sensitivity            0.9845   0.9755   0.9441   0.9720   0.9922
-## Specificity            0.9991   0.9932   0.9947   0.9889   0.9935
-## Pos Pred Value         0.9978   0.9717   0.9751   0.9432   0.9709
-## Neg Pred Value         0.9938   0.9942   0.9878   0.9947   0.9983
-## Prevalence             0.2883   0.1927   0.1801   0.1591   0.1798
-## Detection Rate         0.2838   0.1880   0.1700   0.1546   0.1784
+## Sensitivity            0.9797   0.9670   0.9573   0.9732   0.9908
+## Specificity            0.9986   0.9916   0.9930   0.9924   0.9929
+## Pos Pred Value         0.9964   0.9651   0.9671   0.9611   0.9681
+## Neg Pred Value         0.9918   0.9921   0.9909   0.9948   0.9980
+## Prevalence             0.2893   0.1931   0.1761   0.1619   0.1796
+## Detection Rate         0.2835   0.1867   0.1686   0.1575   0.1779
 ## Detection Prevalence   0.2845   0.1935   0.1744   0.1639   0.1838
-## Balanced Accuracy      0.9918   0.9844   0.9694   0.9804   0.9928</code></pre>
+## Balanced Accuracy      0.9892   0.9793   0.9752   0.9828   0.9918</code></pre>
 <pre class="r"><code>accuracy &lt;- postResample(predict, testing$classe)
 accuracy</code></pre>
 <pre><code>##  Accuracy     Kappa 
-## 0.9748917 0.9682245</code></pre>
+## 0.9742544 0.9674144</code></pre>
 <ul>
 <li>The estimated accuracy of the model is 97.6% and the estimated out of sample error is 2.4%.</li>
 </ul>
@@ -234,7 +234,30 @@ prp(treeModel) </code></pre>
 <pre class="r"><code>testing_data &lt;- testing_data[featureset[featureset!='classe']]
 classe &lt;- predict(model, newdata=testing_data)
 classe.df &lt;- data.frame(classe)
-write.csv(classe.df, file = &quot;Results.csv&quot;)</code></pre>
+# prediction on test set
+classe.df</code></pre>
+<pre><code>##    classe
+## 1       B
+## 2       A
+## 3       B
+## 4       A
+## 5       A
+## 6       E
+## 7       D
+## 8       B
+## 9       A
+## 10      A
+## 11      B
+## 12      C
+## 13      B
+## 14      A
+## 15      E
+## 16      E
+## 17      A
+## 18      B
+## 19      B
+## 20      B</code></pre>
+<pre class="r"><code>write.csv(classe.df, file = &quot;Results.csv&quot;)</code></pre>
 </div>
 
 
